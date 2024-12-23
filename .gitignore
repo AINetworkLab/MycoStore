@@ -1,2 +1,2 @@
-gateway/
-openwhisk-deploy-kube/
+/gateway/
+/openwhisk-deploy-kube/
