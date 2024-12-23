@@ -1,86 +1,66 @@
 # Re2po
 
-A Distributed Redundancy-aware Model Repository in Edge Serverless Computing
+A Redundancy-aware Model Repository in Edge Serverless Computing
 
 ---
 
-## 1. **docker-compose.yml**
+## 1. **Project Structure**
 
-A Docker Compose configuration file used to define and start services, including containerized components.
-
----
-
-## 2. **gateway/**
-
-This directory includes scripts and utilities for model management, data processing, and interaction with MinIO storage.
-
-| **File**                      | **Description**                                           |
-| ----------------------------- | --------------------------------------------------------- |
-| `data_dao.py`                 | Data Access Object (DAO) layer for handling data storage. |
-| `entity.py`                   | Entity definitions for data models.                       |
-| `find_common_items.py`        | Utility to find common elements across datasets.          |
-| `main.py`                     | Entry point script for the gateway module.                |
-| `minio_service.py`            | Interface to interact with MinIO services.                |
-| `minio_utils.py`              | Helper functions for MinIO operations.                    |
-| `model_compose.py`            | Model composition and integration functions.              |
-| `model_compose_tf.py`         | TensorFlow-specific model composition utilities.          |
-| `model_dao.py`                | DAO layer for managing model storage.                     |
-| `model_save.py`               | Script to save model files.                               |
-| `model_save_tf.py`            | TensorFlow-specific model saving utilities.               |
-| `ow-load.py`                  | Script for OpenWhisk model loading.                       |
-| `ow_test.py`                  | OpenWhisk test script.                                    |
-| `safetensor2torch_all.py`     | Convert all safetensors to PyTorch-compatible formats.    |
-| `safetensors2torch_single.py` | Convert a single safetensor to PyTorch format.            |
-| `storage_dao.py`              | DAO for handling storage operations.                      |
-| `temp_dir.py`                 | Temporary directory management utilities.                 |
+The main project structure is as follows:
+├── deps/
+│ ├── docker-compose.yml # Docker Compose configuration for containerized services
+│ └── openwhisk-deploy-kube/ # Deployment files for OpenWhisk on Kubernetes
+│ ├── deploy/ # Configuration files and scripts for cluster setup
+│ ├── helm/ # Helm Charts for Kubernetes application deployment
+│ └── test_node/ # Test scripts and utilities for OpenWhisk and MinIO integration
+├── src/
+│ ├── dao/ # Data Access Objects for managing database operations
+│ │ ├── data_dao.py # General data access logic
+│ │ ├── model_dao.py # Model-related database operations
+│ │ └── storage_dao.py # Storage-related database operations
+│ ├── model/ # Models for database schema
+│ │ └── entity.py # Database schema definition using SQLAlchemy
+│ ├── services/ # Business logic and service layer
+│ │ ├── minio_service.py # MinIO-related service logic
+│ │ ├── model_compose.py # Logic for composing models
+│ │ ├── model_compose_tf.py # TensorFlow-specific model composition logic
+│ │ ├── model_save.py # Logic for saving models
+│ │ └── model_save_tf.py # TensorFlow-specific model saving logic
+│ └── utils/ # Utility scripts
+│ ├── minio_utils.py # Helper functions for MinIO operations
+│ └── temp_dir.py # Temporary scripts for debugging or experimentation
 
 ---
 
-## 3. **openwhisk-deploy-kube/**
+## 2. **Key Components**
 
-This directory contains scripts and configurations for deploying OpenWhisk on Kubernetes.
+### 1. **deps**
 
-### **deploy/**
+- **`docker-compose.yml`**: Defines and manages containerized services for local development and testing.
+- **`openwhisk-deploy-kube/`**: Contains all the deployment configurations and scripts for running OpenWhisk on a Kubernetes cluster.
+  - **`deploy/`**: Includes Kind cluster configurations and startup scripts.
+  - **`helm/`**: Helm Charts for deploying OpenWhisk and its dependencies.
+  - **`test_node/`**: Python scripts for testing OpenWhisk functions, MinIO integration, and other components.
 
-- **`kind/`**: Configuration files for setting up a Kubernetes cluster using Kind.
-  - `kind-cluster.yaml`, `kind-cluster-2.yaml`: Kind cluster definitions.
-  - `start-kind.sh`, `start-kind-2.sh`: Scripts to start Kind clusters.
-- **`mycluster.yaml`**: Custom cluster configuration.
+### 2. **src**
 
-### **helm/openwhisk/**
-
-Helm chart for deploying OpenWhisk components with Kubernetes.
-
-| **File/Directory** | **Description**                                            |
-| ------------------ | ---------------------------------------------------------- |
-| `Chart.yaml`       | Helm chart metadata.                                       |
-| `configMapFiles/`  | Scripts and configurations for initialization and testing. |
-| `templates/`       | Kubernetes manifest templates for various components.      |
-| `runtimes.json`    | Definitions for supported runtimes.                        |
-| `values.yaml`      | Default values for Helm chart customization.               |
-| `README.md`        | Documentation for the Helm chart.                          |
-| `LICENSE`          | License information.                                       |
-
-### **test_node/**
-
-Scripts for testing and validating various operations.
-
-| **File**                  | **Description**                        |
-| ------------------------- | -------------------------------------- |
-| `download.py`             | Download utility script.               |
-| `model_inference.py`      | Script to perform model inference.     |
-| `model_inference_test.py` | Test script for model inference.       |
-| `openwhisk_minio.py`      | Integrate OpenWhisk with MinIO.        |
-| `send_file.py`            | Script to send files.                  |
-| `send_minio.py`           | Upload data to MinIO storage.          |
-| `test.ipynb`              | Jupyter Notebook for testing purposes. |
-| `upload2minio.py`         | Script to upload files to MinIO.       |
+- **`dao/`**: Data Access Layer.
+  - Handles interactions with the database.
+- **`model/`**: Database schema definitions using SQLAlchemy.
+- **`services/`**: Core business logic and service implementations.
+  - Includes TensorFlow-specific logic for handling AI models and MinIO services.
+- **`utils/`**: General utility functions and scripts for various tasks.
 
 ---
 
-## 4. **README.md**
+## 3. **Prerequisites**
 
-This file provides an overview of the project structure and its components.
+To use this project, ensure the following are installed:
+
+- [Docker](https://www.docker.com/)
+- [Kubernetes](https://kubernetes.io/)
+- [Helm](https://helm.sh/)
+- Python 3.8+ with the required dependencies (see `requirements.txt` if available)
 
 ---
 
@@ -88,8 +68,6 @@ This file provides an overview of the project structure and its components.
 
 This project integrates multiple services and tools for efficient model management, Kubernetes-based container orchestration, and OpenWhisk deployment.
 
-### Key Components:
+### Contributing
 
-- **Gateway**: For data access, model management, and MinIO interactions.
-- **OpenWhisk Deployment**: Kubernetes-based deployment scripts using Helm.
-- **Testing and Validation**: Scripts for testing model inference and storage functionalities.
+Feel free to submit issues or pull requests if you find any bugs or want to propose new features. Contributions are welcome!
