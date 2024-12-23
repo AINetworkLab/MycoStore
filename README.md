@@ -7,30 +7,31 @@ A Redundancy-aware Model Repository in Edge Serverless Computing
 ## 1. **Project Structure**
 
 The main project structure is as follows:
-├── deps/
-│ ├── docker-compose.yml # Docker Compose configuration for containerized services
-│ └── openwhisk-deploy-kube/ # Deployment files for OpenWhisk on Kubernetes
-│ ├── deploy/ # Configuration files and scripts for cluster setup
-│ ├── helm/ # Helm Charts for Kubernetes application deployment
-│ └── test_node/ # Test scripts and utilities for OpenWhisk and MinIO integration
-├── src/
-│ ├── dao/ # Data Access Objects for managing database operations
-│ │ ├── data_dao.py # General data access logic
-│ │ ├── model_dao.py # Model-related database operations
-│ │ └── storage_dao.py # Storage-related database operations
-│ ├── model/ # Models for database schema
-│ │ └── entity.py # Database schema definition using SQLAlchemy
-│ ├── services/ # Business logic and service layer
-│ │ ├── minio_service.py # MinIO-related service logic
-│ │ ├── model_compose.py # Logic for composing models
-│ │ ├── model_compose_tf.py # TensorFlow-specific model composition logic
-│ │ ├── model_save.py # Logic for saving models
-│ │ └── model_save_tf.py # TensorFlow-specific model saving logic
-│ └── utils/ # Utility scripts
-│ ├── minio_utils.py # Helper functions for MinIO operations
-│ └── temp_dir.py # Temporary scripts for debugging or experimentation
 
----
+```plaintext
+deps/
+├── docker-compose.yml           # Docker Compose configuration for containerized services
+└── openwhisk-deploy-kube/       # Deployment files for OpenWhisk on Kubernetes
+    ├── deploy/                  # Configuration files and scripts for cluster setup
+    ├── helm/                    # Helm Charts for Kubernetes application deployment
+    └── test_node/               # Test scripts and utilities for OpenWhisk and MinIO integration
+src/
+├── dao/                         # Data Access Objects for managing database operations
+│   ├── data_dao.py              # General data access logic
+│   ├── model_dao.py             # Model-related database operations
+│   └── storage_dao.py           # Storage-related database operations
+├── model/                       # Models for database schema
+│   └── entity.py                # Database schema definition using SQLAlchemy
+├── services/                    # Business logic and service layer
+│   ├── minio_service.py         # MinIO-related service logic
+│   ├── model_compose.py         # Logic for composing models
+│   ├── model_compose_tf.py      # TensorFlow-specific model composition logic
+│   ├── model_save.py            # Logic for saving models
+│   └── model_save_tf.py         # TensorFlow-specific model saving logic
+└── utils/                       # Utility scripts
+    ├── minio_utils.py           # Helper functions for MinIO operations
+    └── temp_dir.py              # Temporary scripts for debugging or experimentation
+```
 
 ## 2. **Key Components**
 
