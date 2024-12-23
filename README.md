@@ -61,7 +61,7 @@ To use this project, ensure the following are installed:
 - [Docker](https://www.docker.com/)
 - [Kubernetes](https://kubernetes.io/)
 - [Helm](https://helm.sh/)
-- Python 3.8+ with the required dependencies (see `requirements.txt` if available)
+- Python 3.8+ with the required dependencies (see `/lib/requirements.txt`)
 
 ---
 
