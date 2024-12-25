@@ -1,8 +1,8 @@
 import os
-import model_save
-import model_save_tf
-import model_compose
-import model_compose_tf
+from ..services import model_save
+from ..services import model_save_tf
+from ..services import model_compose
+from ..services import model_compose_tf
 from minio import Minio
 import heapq
 

@@ -1,4 +1,4 @@
-from entity import SessionLocal, DataInfo
+from ..model.entity import SessionLocal, DataInfo
 from sqlalchemy import text, update
 
 session = SessionLocal()

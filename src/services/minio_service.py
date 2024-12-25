@@ -1,11 +1,11 @@
-import storage_dao
-import data_dao
-import model_dao
+from ..dao import storage_dao
+from ..dao import data_dao
+from ..dao import model_dao
 import os
-from temp_dir import TempDir
-import minio_utils as utils
+from ..utils.temp_dir import TempDir
+from ..utils import minio_utils as utils
 import torch
-from entity import ModelInfo, StorageInfo, DataInfo, ModelInfo_2, LocationInfo
+from ..model.entity import ModelInfo, StorageInfo, DataInfo, ModelInfo_2, LocationInfo
 from fastapi import FastAPI, UploadFile, BackgroundTasks
 import model_compose
 from starlette.responses import FileResponse

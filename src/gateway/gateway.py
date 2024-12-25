@@ -1,6 +1,6 @@
 from fastapi import FastAPI, UploadFile, BackgroundTasks
 import uvicorn
-import minio_service
+from ..services import minio_service
 
 app = FastAPI()
 
@@ -36,4 +36,4 @@ async def delete_all():
 
 if __name__ == "__main__":
     #端口地址为:8000/docs
-    uvicorn.run(app='main:app', host='0.0.0.0', port=8000, reload=True)
+    uvicorn.run(app='gateway:app', host='0.0.0.0', port=8000, reload=True)
