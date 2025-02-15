@@ -59,19 +59,20 @@ To use this project, ensure the following are installed:
 - [Helm](https://helm.sh/)
 - Python 3.8+ with the required dependencies (see `/lib/requirements.txt`)
 
-% ## Summary
+<!-- 
+## Summary
 
-% CMLS is a redundancy-aware model repository designed for edge serverless computing environments. It addresses the challenges of high latency and large model sizes in machine learning (ML) inference tasks by caching models at the edge. Unlike traditional cloud-native ML inference systems that retrieve models from cloud repositories, CMLS stores and retrieves models directly at the edge, significantly reducing download times and data transmission overhead.
+CMLS is a redundancy-aware model repository designed for edge serverless computing environments. It addresses the challenges of high latency and large model sizes in machine learning (ML) inference tasks by caching models at the edge. Unlike traditional cloud-native ML inference systems that retrieve models from cloud repositories, CMLS stores and retrieves models directly at the edge, significantly reducing download times and data transmission overhead.
 
-% CMLS employs advanced techniques like model decomposition, layer-wise storage, and redundancy elimination to optimize both storage and data transfer. By identifying and removing redundant data, it reduces the model size by up to 23.9% while ensuring that only essential data is stored at the edge. This approach allows serverless functions to transparently access complete models without being aware of the underlying storage structure.
+CMLS employs advanced techniques like model decomposition, layer-wise storage, and redundancy elimination to optimize both storage and data transfer. By identifying and removing redundant data, it reduces the model size by up to 23.9% while ensuring that only essential data is stored at the edge. This approach allows serverless functions to transparently access complete models without being aware of the underlying storage structure.
 
-% Key features of the CMLS framework include:
-% • Redundancy-aware model storage: Minimizes storage and transmission costs by eliminating duplicate data.
-% • Edge-based caching: Reduces model download times by up to 8.8 times compared to cloud-based retrieval.
-% • Seamless integration with serverless platforms: Supports various ML frameworks and transparently manages model layer composition and storage.
+Key features of the CMLS framework include:
+• Redundancy-aware model storage: Minimizes storage and transmission costs by eliminating duplicate data.
+• Edge-based caching: Reduces model download times by up to 8.8 times compared to cloud-based retrieval.
+• Seamless integration with serverless platforms: Supports various ML frameworks and transparently manages model layer composition and storage.
 
-% The project leverages Kubernetes for container orchestration, OpenWhisk for serverless function execution, and MinIO for object storage, providing a robust, scalable solution for deploying ML models in resource-constrained edge environments.
-
+The project leverages Kubernetes for container orchestration, OpenWhisk for serverless function execution, and MinIO for object storage, providing a robust, scalable solution for deploying ML models in resource-constrained edge environments.
+-->
 ### Contributing
 
 Feel free to submit issues or pull requests if you find any bugs or want to propose new features. Contributions are welcome!
