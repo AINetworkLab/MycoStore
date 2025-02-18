@@ -1,4 +1,4 @@
-# CMLS
+# MycoStore
 
 A Cross-Model Layer Sharing Framework for Efficient Neural Network Model Cache at the Network Edge
 
