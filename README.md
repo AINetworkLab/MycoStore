@@ -46,7 +46,7 @@ src/
 
 - **`dao/`**: Data Access Layer.
   - Handles interactions with the database.
-- **`model/`**: Database schema definitions using SQLAlchemy.
+- **`model/`**: Database schema definitions.
 - **`services/`**: Core business logic and service implementations.
   - Includes TensorFlow-specific logic for handling AI models and MinIO services.
 - **`utils/`**: General utility functions and scripts for various tasks.
@@ -63,9 +63,9 @@ To use this project, ensure the following are installed:
 <!-- 
 ## Summary
 
-CMLS is a redundancy-aware model repository designed for edge serverless computing environments. It addresses the challenges of high latency and large model sizes in machine learning (ML) inference tasks by caching models at the edge. Unlike traditional cloud-native ML inference systems that retrieve models from cloud repositories, CMLS stores and retrieves models directly at the edge, significantly reducing download times and data transmission overhead.
+MycoStore is a redundancy-aware model repository designed for edge serverless computing environments. It addresses the challenges of high latency and large model sizes in machine learning (ML) inference tasks by caching models at the edge. Unlike traditional cloud-native ML inference systems that retrieve models from cloud repositories, MycoStore stores and retrieves models directly at the edge, significantly reducing download times and data transmission overhead.
 
-CMLS employs advanced techniques like model decomposition, layer-wise storage, and redundancy elimination to optimize both storage and data transfer. By identifying and removing redundant data, it reduces the model size by up to 23.9% while ensuring that only essential data is stored at the edge. This approach allows serverless functions to transparently access complete models without being aware of the underlying storage structure.
+MycoStore employs advanced techniques like model decomposition, layer-wise storage, and redundancy elimination to optimize both storage and data transfer. By identifying and removing redundant data, it reduces the model size by up to 23.9% while ensuring that only essential data is stored at the edge. This approach allows serverless functions to transparently access complete models without being aware of the underlying storage structure.
 
 Key features of the CMLS framework include:
 • Redundancy-aware model storage: Minimizes storage and transmission costs by eliminating duplicate data.
