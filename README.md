@@ -21,7 +21,7 @@ src/
 ├── model/                       # Models for database schema
 │   └── entity.py                # Database schema definition using SQLAlchemy
 ├── services/                    # Business logic and service layer
-│   ├── minio_service.py         # MinIO-related service logic
+│   ├── service.py               # Service logic
 │   ├── model_compose.py         # Logic for composing models
 │   ├── model_compose_tf.py      # TensorFlow-specific model composition logic
 │   ├── model_save.py            # Logic for saving models
