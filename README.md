@@ -17,6 +17,7 @@ src/
 ├── dao/                         # Data Access Objects for managing database operations
 │   ├── data_dao.py              # General data access logic
 │   ├── model_dao.py             # Model-related database operations
+│   ├── redis_dao.py             # Model data operations
 │   └── storage_dao.py           # Storage-related database operations
 ├── model/                       # Models for database schema
 │   └── entity.py                # Database schema definition using SQLAlchemy
