@@ -65,7 +65,6 @@ def existing_models(model: ModelInfo):
 
 def existing_models_2(model: ModelInfo_2):
     try:
-        # 利用联合索引进行过滤
         query = session.query(ModelInfo_2).filter(
             ModelInfo_2.layer_hash == model.layer_hash,
             ModelInfo_2.model_name == model.model_name
@@ -129,41 +128,13 @@ def delete_all_2():
         return {"error": str(e)}
     finally:
         session.close()
-# def delete_by_model_name(model_name: str):
-#     try:
-#         delete_sql = text("DELETE FROM models WHERE model_name = :model_name")
-#         session.execute(delete_sql, {"model_name": model_name})
-#         session.commit()
-#     except Exception as e:
-#         return {"error": str(e)}
-#     finally:
-#         session.close()
 
-# 没有关闭session
-
-# def get_model_by_layer_hash_all(layer_hash: str):
-#     return session.query(ModelInfo).filter(ModelInfo.layer_hash == layer_hash).all()
-
-
-# def add_model(model: ModelInfo):
-#     session.add(model)
-#     session.commit()
-#     session.refresh(model)
-
-# def existing_models(model: ModelInfo):
-#     models = session.query(ModelInfo).filter(
-#         ModelInfo.layer_hash == model.layer_hash,
-#         ModelInfo.model_name == model.model_name,
-#         ModelInfo.minio_id == model.minio_id,
-#         ModelInfo.layer_number == model.layer_number,
-#         ModelInfo.layer_name == model.layer_name).all()
-#     return models
-
-# def get_model_by_model_name(model_name: str):
-#     return session.query(ModelInfo).filter(ModelInfo.model_name == model_name).all()
-
-
-# def delete_all():
-#     truncate_sql = text("TRUNCATE TABLE models;")
-#     session.execute(truncate_sql)
-#     session.commit()
+def delete_by_model_name(model_name: str):
+    try:
+        delete_sql = text("DELETE FROM models WHERE model_name = :model_name")
+        session.execute(delete_sql, {"model_name": model_name})
+        session.commit()
+    except Exception as e:
+        return {"error": str(e)}
+    finally:
+        session.close()
