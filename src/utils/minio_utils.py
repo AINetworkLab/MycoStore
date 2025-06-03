@@ -17,13 +17,10 @@ def _save_state_dict(state_dict, path, type="torch", **kwargs):
         )
     
     os.makedirs(path, exist_ok=True)
-    # state_dict_path = os.path.join(path, _TORCH_STATE_DICT_FILE_NAME)
-    # torch.save(state_dict, state_dict_path, **kwargs)
     if type == "torch":
         return model_save.save_state_dict(dirs=path, state_dict=state_dict, **kwargs)
     elif type == "tensorflow":
         return model_save_tf.save_state_dict(dirs=path, state_dict=state_dict, **kwargs)
-    # return model_save.save_state_dict(dirs=path, state_dict=state_dict, **kwargs)
 
 def match_and_group(L_prime, k, group):
     for layer_id in L_prime:
@@ -43,17 +40,12 @@ def match_and_group(L_prime, k, group):
 def common_layer_identification(layer_hash_list, k=4, bucket=None):
     if bucket is None:
         bucket = defaultdict(list)
-
-    # Step 1: Intra-model comparison
+    # Intra-model
     local = defaultdict(list)
     local = match_and_group(layer_hash_list, k, local)
-
-    # Gather all ids from LOCAL (flatten values)
     all_local_layers = [layer_id for group in local.values() for layer_id in group]
-
-    # Step 2: Inter-model comparison
+    # Inter-model 
     bucket = match_and_group(all_local_layers, k, bucket)
-
     return bucket
 
 def get_client(disk_id):
@@ -87,7 +79,7 @@ def get_disk(file_size, disk_spaces):
     sorted_disks = sorted(disk_spaces.items(), key=lambda x: x[1], reverse=True)
 
     for disk_key, free_space in sorted_disks:
-        minio_id = disk_key.split("_")[0]  # 提取 minio_id 部分
+        minio_id = disk_key.split("_")[0]
         if int(free_space) >= file_size:
             return str(minio_id)
     
