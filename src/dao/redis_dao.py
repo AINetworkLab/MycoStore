@@ -1,12 +1,9 @@
-# redis_dao.py
 import redis
 import json
 
 r = redis.Redis(host='localhost', port=6379, decode_responses=True)
 
-# -----------------------------
-# DataInfo Redis 替代实现
-# -----------------------------
+
 def add_data(data):
     try:
         r.hset(f"data:{data.model_name}", mapping={
@@ -31,9 +28,6 @@ def delete_data_by_model_name(model_name):
     except Exception as e:
         return {"error": str(e)}
 
-# -----------------------------
-# ModelInfo Redis 替代实现
-# -----------------------------
 def add_model(model):
     try:
         key = f"model:{model.model_name}"
