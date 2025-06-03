@@ -2,14 +2,11 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine, Column, Integer, String, text, update ,Double
 
-# 创建数据库连接
 SQLALCHEMY_DATABASE_URL = 'mysql+pymysql://root:mysql_pwd@localhost:3306/minio?charset=utf8mb4'
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
-# 创建 SessionLocal 类
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# 创建 Base 类
 Base = declarative_base()
 
 
@@ -38,10 +35,10 @@ class DataInfo(Base):
     __tablename__ = 'storage_data'
 
     model_name = Column(String(255), primary_key=True, index=True)
-    file_number = Column(Integer, nullable=False) # 模型去掉自身冗余后的层数
-    layer_number = Column(Integer, nullable=False) # 模型的总层数
-    minio_count = Column(Integer, nullable=False) # minio存储的层条目数
-    complete = Column(Integer, nullable=False)  # 是否全部上传完成
+    file_number = Column(Integer, nullable=False) 
+    layer_number = Column(Integer, nullable=False) 
+    minio_count = Column(Integer, nullable=False)
+    complete = Column(Integer, nullable=False) 
 
 class ModelInfo_2(Base):
     __tablename__ = 'model'
