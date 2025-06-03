@@ -84,16 +84,13 @@ def get_client(disk_id):
     return None
 
 def get_disk(file_size, disk_spaces):
-    # 对磁盘空间按照剩余空间从大到小排序
     sorted_disks = sorted(disk_spaces.items(), key=lambda x: x[1], reverse=True)
 
-    # 遍历排序后的磁盘空间，选择第一个剩余空间大于等于文件大小的磁盘
     for disk_key, free_space in sorted_disks:
         minio_id = disk_key.split("_")[0]  # 提取 minio_id 部分
         if int(free_space) >= file_size:
             return str(minio_id)
     
-    # 如果所有磁盘的剩余空间都不足以存储文件，返回 -1
     return str(-1)
 
 def load_layer(hash_set, base_path, type="torch"):
