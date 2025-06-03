@@ -5,6 +5,7 @@ from ..services import model_compose
 from ..services import model_compose_tf
 from minio import Minio
 import heapq
+from collections import defaultdict
 
 def _save_state_dict(state_dict, path, type="torch", **kwargs):
 
@@ -23,6 +24,37 @@ def _save_state_dict(state_dict, path, type="torch", **kwargs):
     elif type == "tensorflow":
         return model_save_tf.save_state_dict(dirs=path, state_dict=state_dict, **kwargs)
     # return model_save.save_state_dict(dirs=path, state_dict=state_dict, **kwargs)
+
+def match_and_group(L_prime, k, group):
+    for layer_id in L_prime:
+        prefix = layer_id[:k]
+        if prefix not in group:
+            group[prefix] = [layer_id]
+        else:
+            matched = False
+            for item in group[prefix]:
+                if item == layer_id:
+                    matched = True
+                    break
+            if not matched:
+                group[prefix].append(layer_id)
+    return group
+
+def common_layer_identification(layer_hash_list, k=4, bucket=None):
+    if bucket is None:
+        bucket = defaultdict(list)
+
+    # Step 1: Intra-model comparison
+    local = defaultdict(list)
+    local = match_and_group(layer_hash_list, k, local)
+
+    # Gather all ids from LOCAL (flatten values)
+    all_local_layers = [layer_id for group in local.values() for layer_id in group]
+
+    # Step 2: Inter-model comparison
+    bucket = match_and_group(all_local_layers, k, bucket)
+
+    return bucket
 
 def get_client(disk_id):
     if disk_id == "1":
