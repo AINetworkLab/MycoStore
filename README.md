@@ -45,10 +45,10 @@ src/
 ### 2. **src**
 
 - **`dao/`**: Data Access Layer.
-  - Handles interactions with the database.
+  - Handle interactions with the database.
 - **`model/`**: Database schema definitions.
 - **`services/`**: Core business logic and service implementations.
-  - Includes TensorFlow and Pytorch specific logic for handling AI models and MinIO services.
+  - Include TensorFlow and Pytorch specific logic for handling AI models and MinIO services.
 - **`utils/`**: General utility functions and scripts for various tasks.
 
 ## 3. **Prerequisites**
